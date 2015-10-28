@@ -91,7 +91,10 @@ public class SplashScreen extends CordovaPlugin {
 
         firstShow = false;
         loadSpinner();
-        showSplashScreen(true);
+
+        //Brad: Use the same parameter that is already implemented for iPhone
+        boolean hideAfterDelay = preferences.getBoolean("AutoHideSplashScreen", true);
+        showSplashScreen(hideAfterDelay);
     }
 
     /**
@@ -107,7 +110,9 @@ public class SplashScreen extends CordovaPlugin {
             return;
         }
         // hide the splash screen to avoid leaking a window
-        this.removeSplashScreen();
+
+        //Brad: With this one splashscreen auto hides when our window is launched, we will call hideSplash from our Pause
+//        this.removeSplashScreen();
     }
 
     @Override
